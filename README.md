@@ -4,6 +4,8 @@
 
 **在线地址**：https://catchzvibe2025-svg.github.io/CATCHZTRIP/
 
+三个人共同维护，权限相同，协作方式见 [`CONTRIBUTING.md`](CONTRIBUTING.md)；给 AI 助手（Claude / Codex）的规则在 [`AGENTS.md`](AGENTS.md)。
+
 ## 装到手机上
 
 - **iPhone**：用 Safari 打开上面的地址 → 底部「分享」按钮 → 「添加到主屏幕」。
