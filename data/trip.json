@@ -7,7 +7,7 @@
   "cover": "c1",
   "demo": true,
   "vehicle": { "name": "2022 Model Y 长续航", "rangeMi": 330, "ev": true },
-  "updated": "2026-11-12 01:15 CT",
+  "updated": "2026-11-12 01:20 CT",
   "members": [
     { "id": "tz", "short": "TZ", "name": "Haoyu", "color": "c1", "span": "全程" },
     { "id": "fri", "short": "FRI", "name": "Frida", "color": "c2", "span": "11/11–11/17，之后待定" },
@@ -346,9 +346,9 @@
       { "date": "2027-01-14", "title": "仔仔在美行程到此", "kind": "end" }
     ],
     "where": {
-      "tz": "11/25 起路线待定 · 1 月初飞拉斯维加斯 CES",
-      "fri": "11/17 起回达拉斯，会合日待定 · 1 月初去 CES",
-      "hank": "与 TZ 同行 · 1 月初去 CES · 在美到 1/14"
+      "tz": "11/25 起路线待定 · 12/25 在 Key West · 1 月初飞拉斯维加斯 CES",
+      "fri": "11/17 起回达拉斯，会合日待定 · 12/25 在 Key West · 1 月初去 CES",
+      "hank": "与 TZ 同行 · 12/25 在 Key West · 1 月初去 CES · 在美到 1/14"
     }
   }
 }
