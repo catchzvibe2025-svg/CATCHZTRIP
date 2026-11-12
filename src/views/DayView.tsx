@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useStore } from "../store";
 import type { Day, ItemKind, Trip } from "../types";
-import { md, wd, presence, whereText, isOpen, itemKind, daysBetween, startMin, todayISO, nowMin, fmtGap } from "../utils";
+import { md, wd, presence, whereText, isOpen, itemKind, daysBetween, startMin, todayISO, nowMin, fmtGap, legMiles } from "../utils";
 import { Icon, NavLink, Pip, StayTag } from "../ui/bits";
 import { Scene, sceneAccent } from "../ui/Scene";
 
@@ -169,6 +169,8 @@ export function DayBody({ day, trip, live, editing }: { day: Day; trip: Trip; li
         {day.tip && <p className="tip"><b>小提示</b>{day.tip}</p>}
       </section>
 
+      <DriveCard day={day} trip={trip} />
+
       <section className={"stay stay-" + day.stay.status}>
         <div className="stay-top"><h2 className="k">今晚</h2><StayTag status={day.stay.status} /></div>
         <div className="stay-name">{day.stay.name}</div>
@@ -213,5 +215,42 @@ function AddItem({ date }: { date: string }) {
         <button type="submit" className="btn btn-primary"><Icon name="plus" />加到 {md(date)}</button>
       </div>
     </form>
+  );
+}
+
+/** 今天开多远、要不要中途充电 */
+function DriveCard({ day, trip }: { day: Day; trip: Trip }) {
+  const stops = (day.route ?? []).map(id => trip.stops.find(s => s.id === id)).filter((s): s is NonNullable<typeof s> => !!s);
+  if (stops.length < 2) return null;
+  const legs = stops.slice(1).map((s, i) => ({ to: s, mi: legMiles(stops[i], s) }));
+  const total = legs.reduce((n, l) => n + l.mi, 0);
+  const v = trip.vehicle, usable = v ? Math.round(v.rangeMi * 0.8) : 0;
+  const charges = v?.ev && total > usable ? Math.ceil(total / usable) - 1 : 0;
+  const planned = day.items.filter(i => itemKind(i) === "charge").length;
+  return (
+    <section className="block drive">
+      <h2 className="k">今天开车</h2>
+      <div className="drive-top">
+        <span className="num">{total}<i> mi</i></span>
+        <span className="drive-km muted">约 {Math.round(total * 1.609 / 10) * 10} 公里</span>
+      </div>
+      <div className="drive-bar" role="img" aria-label={`全程约 ${total} 英里，${legs.length} 段`}>
+        {legs.map((l, i) => <span key={i} className="seg-leg" style={{ flexGrow: l.mi }} />)}
+        {v?.ev && Array.from({ length: charges }, (_, i) => (
+          <i key={i} className="bolt" style={{ left: `${((i + 1) * usable / total) * 100}%` }} aria-hidden="true">⚡</i>
+        ))}
+      </div>
+      <div className="drive-stops">
+        {stops.map((s, i) => <span key={s.id}>{s.name}{i > 0 && <small> {legs[i - 1].mi} mi</small>}</span>)}
+      </div>
+      {v?.ev && (
+        <p className="small muted">
+          {charges > 0
+            ? `超过 ${v.name} 按 80% 规划的单次续航（${usable} mi），途中至少充 ${charges} 次。${planned ? `日程里已排 ${planned} 个充电点。` : "日程里还没排充电点。"}`
+            : `在 ${v.name} 单次续航内（按 80% 规划 ${usable} mi），不用中途充电。`}
+          里程按直线距离估算，实际以导航为准。
+        </p>
+      )}
+    </section>
   );
 }

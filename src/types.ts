@@ -23,6 +23,7 @@ export interface Day {
   items: Item[];
   tip?: string;
   stay: Stay;
+  route?: string[];     // 当天依次经过的站点 id（stops 里的），用来算行车里程
   scene: SceneSpec;
   place: string;       // 当天所在地，画面上的大字
 }

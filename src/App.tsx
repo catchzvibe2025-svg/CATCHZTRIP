@@ -9,6 +9,8 @@ import { ListsView } from "./views/ListsView";
 import { ShareView } from "./views/ShareView";
 import { PublicView } from "./views/PublicView";
 import { TripsView } from "./views/TripsView";
+import { Scene } from "./ui/Scene";
+import { defaultDay } from "./views/DayView";
 
 const TABS = [
   { id: "today", label: "此刻", icon: "sun", match: ["today"] },
@@ -87,6 +89,31 @@ function Shell() {
   );
 }
 
+/** 每次打开 app 的头一屏：今天的画面铺满，名字浮出来，然后退场。减少动态效果时不出现 */
+function Intro() {
+  const { trip } = useStore();
+  const [show, setShow] = useState(() => {
+    try {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches || location.hash === "#public") return false;
+      if (sessionStorage.getItem("catchztrip.intro")) return false;
+      sessionStorage.setItem("catchztrip.intro", "1");
+      return true;
+    } catch { return false; }
+  });
+  useEffect(() => { if (!show) return; const id = setTimeout(() => setShow(false), 2300); return () => clearTimeout(id); }, [show]);
+  if (!show) return null;
+  const day = defaultDay(trip);
+  return (
+    <div className="intro" onClick={() => setShow(false)} aria-hidden="true">
+      <Scene spec={day.scene} seed={trip.id + day.date} />
+      <div className="intro-in">
+        <span className="intro-mark"><i>Catchz</i><b>TRIP</b></span>
+        <span className="intro-sub">{day.place || trip.name}</span>
+      </div>
+    </div>
+  );
+}
+
 export function App() {
-  return <StoreProvider><Shell /></StoreProvider>;
+  return <StoreProvider><Shell /><Intro /></StoreProvider>;
 }

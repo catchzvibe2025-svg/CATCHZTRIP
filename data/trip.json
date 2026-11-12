@@ -37,6 +37,7 @@
   "days": [
     {
       "date": "2026-11-11",
+      "route": ["dal", "ala"],
       "scene": { "type": "road", "tod": "night" },
       "place": "Texas → New Mexico",
       "title": "达拉斯出发，连夜向西",
@@ -54,6 +55,7 @@
     },
     {
       "date": "2026-11-12",
+      "route": ["ala", "lor"],
       "scene": { "type": "dunes", "tod": "dusk" },
       "place": "White Sands",
       "title": "白沙 Alamogordo → Lordsburg",
@@ -79,6 +81,7 @@
     },
     {
       "date": "2026-11-13",
+      "route": ["lor", "sag", "sb"],
       "scene": { "type": "saguaro", "tod": "golden" },
       "place": "Saguaro",
       "title": "仙人掌公园 Saguaro → San Bernardino",
@@ -104,6 +107,7 @@
     },
     {
       "date": "2026-11-14",
+      "route": ["sb", "lax", "irv"],
       "scene": { "type": "city", "tod": "dusk" },
       "place": "Los Angeles",
       "title": "LAX 接仔仔，三人会合",
@@ -130,6 +134,7 @@
     },
     {
       "date": "2026-11-15",
+      "route": ["irv", "sd"],
       "scene": { "type": "coast", "tod": "golden" },
       "place": "San Diego",
       "title": "去圣地亚哥：La Jolla 与 Sunset Cliffs",
@@ -179,6 +184,7 @@
     },
     {
       "date": "2026-11-17",
+      "route": ["sd", "scl"],
       "scene": { "type": "camp", "tod": "night" },
       "place": "San Clemente",
       "title": "La Jolla、UCSD，送 FRI 去机场",
@@ -210,6 +216,7 @@
     },
     {
       "date": "2026-11-18",
+      "route": ["scl", "wla"],
       "scene": { "type": "city", "tod": "golden" },
       "place": "Culver City",
       "title": "回西 LA，下午开会",

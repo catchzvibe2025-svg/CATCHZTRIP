@@ -33,6 +33,7 @@ for (const d of t.days ?? []) {
   if (!d.stay || !STATUS.includes(d.stay.status) || !d.stay.name) bad(`${w}：stay 要有 name，status 只能是 booked / tbd / road`);
   for (const k of Object.keys(d.where ?? {})) if (!ids.has(k)) bad(`${w}：where 里的「${k}」不是成员 id`);
   for (const m of ids) if (!(m in (d.where ?? {}))) bad(`${w}：where 里少了成员 ${m}`);
+  for (const r of d.route ?? []) if (!(t.stops ?? []).some(s => s.id === r)) bad(`${w}：route 里的「${r}」不是 stops 里的站点 id`);
   for (const it of d.items ?? []) {
     if (!it.t || !it.title) bad(`${w}：有一条安排缺 t 或 title`);
     if (it.kind && !KINDS.includes(it.kind)) bad(`${w}「${it.title}」：kind 只能是 ${KINDS.join(" / ")}`);
