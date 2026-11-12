@@ -7,7 +7,7 @@
   "cover": "c1",
   "demo": true,
   "vehicle": { "name": "2022 Model Y 长续航", "rangeMi": 330, "ev": true },
-  "updated": "2026-11-12 01:55 CT",
+  "updated": "2026-11-12 02:00 CT",
   "members": [
     { "id": "tz", "short": "TZ", "name": "Haoyu", "color": "c1", "span": "全程" },
     { "id": "fri", "short": "FRI", "name": "Frida", "color": "c2", "span": "11/11–11/17，之后待定" },
@@ -261,7 +261,7 @@
       "date": "2026-11-20",
       "scene": { "type": "hills", "tod": "day" },
       "place": "West LA",
-      "title": "缓冲日：远程工作，可选 Getty",
+      "title": "上午远程工作，下午 Getty",
       "tz": "太平洋时间 PT",
       "where": {
         "tz": "西 LA",
@@ -270,7 +270,7 @@
       },
       "items": [
         { "id": "i48", "t": "上午", "title": "停驻远程工作，目标 3–4 小时" },
-        { "id": "i49", "t": "下午 · 可选", "title": "Getty Center", "note": "须提前预约入场时段，未预约，待定。约不上就本地休整", "place": { "q": "1200 Getty Center Dr, Los Angeles, CA 90049", "dir": true } },
+        { "id": "i49", "t": "下午", "title": "Getty Center", "note": "入场时段未预约，计划 15:00 左右入场，待到日落后（日落约 16:45）", "place": { "q": "1200 Getty Center Dr, Los Angeles, CA 90049", "dir": true } },
         { "id": "i50", "t": "晚上", "title": "回住处，次日 LA 街访" }
       ],
       "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，具体住处待定", "status": "tbd" }
