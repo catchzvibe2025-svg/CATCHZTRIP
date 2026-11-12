@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 import type { Item, StayStatus, Trip } from "./types";
-import { demoTrip } from "./demoTrip";
+import { demoTrip, DATA_REV } from "./demoTrip";
 
-interface State { trips: Trip[]; activeId: string; editing: boolean; day: string | null }
+interface State { trips: Trip[]; activeId: string; editing: boolean; day: string | null; rev?: string }
 
 type Action =
   | { type: "select"; id: string }
@@ -20,13 +20,18 @@ const clone = <T,>(x: T): T => JSON.parse(JSON.stringify(x));
 const stamp = () => new Date().toLocaleString("zh-CN", { hour12: false }).slice(0, 16) + " · 本机修改";
 
 function load(): State {
-  const base: State = { trips: [clone(demoTrip)], activeId: demoTrip.id, editing: false, day: null };
+  const base: State = { trips: [clone(demoTrip)], activeId: demoTrip.id, editing: false, day: null, rev: DATA_REV };
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return base;
     const s = JSON.parse(raw) as State;
     if (!Array.isArray(s.trips) || !s.trips.length) return base;
     if (!s.trips.every(t => t.days.every(d => d.scene))) return base;
+    // trip.json 更新后，用新版换掉本机存的那份（本机对它的临时修改会被覆盖）
+    if (s.rev !== DATA_REV) {
+      const rest = s.trips.filter(t => t.id !== demoTrip.id && !t.demo);
+      return { trips: [clone(demoTrip), ...rest], activeId: demoTrip.id, editing: false, day: null, rev: DATA_REV };
+    }
     return { ...s, editing: false, day: null };
   } catch { return base; }
 }

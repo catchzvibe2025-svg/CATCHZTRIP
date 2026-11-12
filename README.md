@@ -34,8 +34,8 @@ npm run dev          # 构建并在本地起一个静态服务
 
 推到 `main` 后，GitHub Actions 会自动构建并发布到 GitHub Pages（`.github/workflows/pages.yml`）。
 
-- 代码在 `src/`：`types.ts` 数据结构，`demoTrip.ts` 示例行程，`store.tsx` 状态，`views/` 各标签页，`ui/RouteMap.tsx` 路线图，`ui/Scene.tsx` 每天的生成式风景。
-- 改行程数据就改 `src/demoTrip.ts`。这是公开仓库：不要写确认号、价格、电话、邮箱、房源链接和内部称呼。
+- 代码在 `src/`：`types.ts` 数据结构，`demoTrip.ts` 读入 `data/trip.json`，`store.tsx` 状态，`views/` 各标签页，`ui/RouteMap.tsx` 路线图，`ui/Scene.tsx` 每天的生成式风景。
+- **行程数据只在 `data/trip.json`**，格式和规则见 [`docs/DATA.md`](docs/DATA.md)。提交到 `main` 后自动检查（`npm run check`：格式 + 隐私）并发布；检查不过不会上线。这是公开仓库：不要写确认号、价格、电话、邮箱、房源链接和内部称呼。
 - `scripts/icons.cjs` 用 Playwright 重新生成 `public/` 里的图标。
 
 ## 现在的限制

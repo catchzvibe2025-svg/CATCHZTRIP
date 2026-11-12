@@ -25,7 +25,7 @@ export function TripsView({ go }: { go: (r: string) => void }) {
                 </div>
                 <div className="trip-body">
                   <div className="trip-top">
-                    {t.demo && <span className="tag tag-demo">示例</span>}
+                    {t.demo && <span className="tag tag-demo">自动同步</span>}
                     <span className="mono muted">{md(t.start)} – {md(t.end)} · {s.days} 天</span>
                   </div>
                   <h3 className="display">{t.name}</h3>
@@ -40,7 +40,7 @@ export function TripsView({ go }: { go: (r: string) => void }) {
               </button>
               <div className="trip-actions">
                 {t.demo
-                  ? <button type="button" className="btn btn-ghost" onClick={() => dispatch({ type: "resetDemo" })}>恢复示例数据</button>
+                  ? <button type="button" className="btn btn-ghost" onClick={() => dispatch({ type: "resetDemo" })}>恢复到同步版本</button>
                   : confirmDel === t.id
                     ? <><span className="muted small">删除后不能恢复</span><button type="button" className="btn btn-danger" onClick={() => { dispatch({ type: "delete", id: t.id }); setConfirmDel(null); }}>确认删除</button><button type="button" className="btn btn-ghost" onClick={() => setConfirmDel(null)}>取消</button></>
                     : <button type="button" className="btn btn-ghost" onClick={() => setConfirmDel(t.id)}>删除</button>}
