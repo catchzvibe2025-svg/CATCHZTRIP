@@ -7,7 +7,7 @@
   "cover": "c1",
   "demo": true,
   "vehicle": { "name": "2022 Model Y 长续航", "rangeMi": 330, "ev": true },
-  "updated": "2026-11-12 02:35 CT",
+  "updated": "2026-11-12 02:40 CT",
   "members": [
     { "id": "tz", "short": "TZ", "name": "Haoyu", "color": "c1", "span": "全程" },
     { "id": "fri", "short": "FRI", "name": "Frida", "color": "c2", "span": "11/11–11/17，之后待定" },
@@ -147,11 +147,11 @@
       "items": [
         { "id": "i19", "t": "10:00–12:00", "title": "开往圣地亚哥" },
         { "id": "i20", "t": "12:00–15:00", "title": "MCASD La Jolla 当代艺术馆", "place": { "q": "Museum of Contemporary Art San Diego La Jolla" } },
-        { "id": "i61", "t": "14:00 前", "title": "交稿（初审用）", "note": "截止 14:00，出发前尽量交掉", "kind": "work" },
-        { "id": "i59", "t": "14:00", "title": "线上会议：初审", "note": "TZ · 大概率要开，时长待定。须停好车或找地方坐下再开", "kind": "work" },
+        { "id": "i59", "t": "14:00", "title": "线上会议：初审", "note": "TZ · 大概率要开，是否仍在 14:00 待定。须停好车或找地方坐下再开", "kind": "work" },
         { "id": "i21", "t": "16:30–17:15", "title": "Sunset Cliffs 日落", "place": { "q": "Sunset Cliffs Natural Park San Diego" } },
         { "id": "i22", "t": "18:00–20:30", "title": "Little Italy + 海湾夜游", "place": { "q": "Little Italy San Diego" } },
-        { "id": "i60", "t": "待定", "title": "对 TVC 脚本", "note": "TZ · 时间待定", "kind": "work" }
+        { "id": "i60", "t": "待定", "title": "对 TVC 脚本", "note": "TZ · 时间待定", "kind": "work" },
+        { "id": "i61", "t": "24:00 前", "title": "交稿（初审用）", "note": "截止今晚 24:00，晚饭后回酒店收尾", "kind": "work" }
       ],
       "stay": {
         "name": "Crowne Plaza San Diego - Mission Valley",
