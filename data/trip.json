@@ -7,7 +7,7 @@
   "cover": "c1",
   "demo": true,
   "vehicle": { "name": "2022 Model Y 长续航", "rangeMi": 330, "ev": true },
-  "updated": "2026-11-12 01:25 CT",
+  "updated": "2026-11-12 01:40 CT",
   "members": [
     { "id": "tz", "short": "TZ", "name": "Haoyu", "color": "c1", "span": "全程" },
     { "id": "fri", "short": "FRI", "name": "Frida", "color": "c2", "span": "11/11–11/17，之后待定" },
@@ -314,7 +314,7 @@
       "date": "2026-11-23",
       "scene": { "type": "hills", "tod": "golden" },
       "place": "Los Angeles",
-      "title": "LA 空档日",
+      "title": "Griffith 天文台看日落",
       "tz": "太平洋时间 PT",
       "where": {
         "tz": "洛杉矶一带",
@@ -322,7 +322,8 @@
         "hank": "与 TZ 同行"
       },
       "items": [
-        { "id": "i54", "t": "全天", "title": "白天安排待定", "note": "不出城过夜，次日 LA TVC" }
+        { "id": "i54", "t": "白天", "title": "自由活动", "note": "不出城过夜，次日 LA TVC" },
+        { "id": "i57", "t": "傍晚", "title": "Griffith 天文台外看日落", "note": "日落约 16:45。周一馆内不开，只在外面看，不用订票", "place": { "q": "Griffith Observatory, Los Angeles, CA", "dir": true } }
       ],
       "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24，具体住处待定", "status": "tbd" }
     },
