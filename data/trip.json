@@ -7,7 +7,7 @@
   "cover": "c1",
   "demo": true,
   "vehicle": { "name": "2022 Model Y 长续航", "rangeMi": 330, "ev": true },
-  "updated": "2026-11-12 01:20 CT",
+  "updated": "2026-11-12 01:25 CT",
   "members": [
     { "id": "tz", "short": "TZ", "name": "Haoyu", "color": "c1", "span": "全程" },
     { "id": "fri", "short": "FRI", "name": "Frida", "color": "c2", "span": "11/11–11/17，之后待定" },
@@ -236,7 +236,7 @@
         { "id": "i43", "t": "14:00–16:00", "title": "开会：Glimboo 社媒", "note": "Qamaria Coffee, Culver City。须停车后开会", "kind": "work", "place": { "q": "Qamaria Coffee Culver City" } },
         { "id": "i44", "t": "会后", "title": "安顿，准备次日 Viola" }
       ],
-      "stay": { "name": "西 LA / Culver City / Palms", "sub": "区域已定，具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "区域已定，连住到 11/24（11/25 退房），具体住处待定", "status": "tbd" }
     },
     {
       "date": "2026-11-19",
@@ -291,8 +291,8 @@
         { "id": "i51", "t": "全天", "title": "LA 街访，整日现场", "note": "地点、开收工时间待定", "kind": "work" },
         { "id": "i52", "t": "收工后", "title": "回住处休息" }
       ],
-      "tip": "今天早上不换住处。",
-      "stay": { "name": "洛杉矶一带", "sub": "具体住处待定", "status": "tbd" }
+      "tip": "连住同一处，今天早上不用搬家。",
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24，具体住处待定", "status": "tbd" }
     },
     {
       "date": "2026-11-22",
@@ -308,7 +308,7 @@
       "items": [
         { "id": "i53", "t": "全天", "title": "白天安排待定", "note": "不出城过夜" }
       ],
-      "stay": { "name": "洛杉矶一带", "sub": "具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24，具体住处待定", "status": "tbd" }
     },
     {
       "date": "2026-11-23",
@@ -324,7 +324,7 @@
       "items": [
         { "id": "i54", "t": "全天", "title": "白天安排待定", "note": "不出城过夜，次日 LA TVC" }
       ],
-      "stay": { "name": "洛杉矶一带", "sub": "具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24，具体住处待定", "status": "tbd" }
     },
     {
       "date": "2026-11-24",
@@ -343,7 +343,7 @@
         { "id": "i56", "t": "收工后", "title": "留在洛杉矶休息，睡足 8 小时", "note": "不连夜赶路" }
       ],
       "tip": "加州的现场工作到今天结束。",
-      "stay": { "name": "洛杉矶一带", "sub": "具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24，具体住处待定", "status": "tbd" }
     }
   ],
   "later": {
