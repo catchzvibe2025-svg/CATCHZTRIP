@@ -7,7 +7,7 @@
   "cover": "c1",
   "demo": true,
   "vehicle": { "name": "2022 Model Y 长续航", "rangeMi": 330, "ev": true },
-  "updated": "2026-11-12 02:00 CT",
+  "updated": "2026-11-12 02:05 CT",
   "members": [
     { "id": "tz", "short": "TZ", "name": "Haoyu", "color": "c1", "span": "全程" },
     { "id": "fri", "short": "FRI", "name": "Frida", "color": "c2", "span": "11/11–11/17，之后待定" },
@@ -221,7 +221,7 @@
       "place": "Culver City",
       "title": "回西 LA，下午开会",
       "tz": "太平洋时间 PT",
-      "work": "14:00 开会",
+      "work": "14:00 开会，17:00 线上例会",
       "where": {
         "tz": "San Clemente → 西 LA",
         "fri": "@在达拉斯",
@@ -234,6 +234,7 @@
         { "id": "i41", "t": "11:30–13:00", "title": "规划到达西 LA", "note": "会场和住处同在 Culver City 一带，停车和路上仍要留出时间" },
         { "id": "i42", "t": "中午", "title": "尝试入住或寄存行李", "note": "能否提前入住待定" },
         { "id": "i43", "t": "14:00–16:00", "title": "开会：Glimboo 社媒", "note": "Qamaria Coffee, Culver City。须停车后开会", "kind": "work", "place": { "q": "Qamaria Coffee Culver City" } },
+        { "id": "i58", "t": "17:00–17:45", "title": "线上例会（每两周一次）", "note": "视频会，TZ 参加。达拉斯时间 19:00。须在住处或停好车再开", "kind": "work" },
         { "id": "i44", "t": "会后", "title": "安顿，准备次日 Viola" }
       ],
       "stay": { "name": "西 LA / Culver City / Palms", "sub": "区域已定，连住到 11/24（11/25 退房），具体住处待定", "status": "tbd" }
@@ -350,7 +351,11 @@
   "later": {
     "from": "2026-11-25",
     "anchors": [
+      { "date": "2026-12-02", "title": "线上例会", "note": "TZ · 达拉斯时间 19:00–19:45 · 视频会", "kind": "work" },
+      { "date": "2026-12-16", "title": "线上例会", "note": "TZ · 达拉斯时间 19:00–19:45 · 视频会", "kind": "work" },
+      { "date": "2026-12-30", "title": "线上例会", "note": "TZ · 达拉斯时间 19:00–19:45 · 视频会", "kind": "work" },
       { "date": "2027-01-05", "title": "CES · 拉斯维加斯", "note": "1/5–1/10 · 坐飞机去 · 三人都去 · 航班待定", "kind": "work" },
+      { "date": "2027-01-13", "title": "线上例会", "note": "TZ · 达拉斯时间 19:00–19:45 · 视频会", "kind": "work" },
       { "date": "2027-01-14", "title": "仔仔在美行程到此", "kind": "end" }
     ],
     "where": {
