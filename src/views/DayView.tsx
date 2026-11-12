@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useStore } from "../store";
 import type { Day, ItemKind, Trip } from "../types";
-import { md, wd, presence, whereText, isOpen, itemKind, daysBetween, startMin, todayISO, nowMin, fmtGap, legMiles } from "../utils";
+import { md, wd, presence, whereText, isOpen, itemKind, daysBetween, startMin, todayISO, nowMin, fmtGap, legMiles, distMi } from "../utils";
+import { useGeo, startGeo, stopGeo } from "../ui/useGeo";
 import { Icon, NavLink, Pip, StayTag } from "../ui/bits";
 import { Scene, sceneAccent } from "../ui/Scene";
 
@@ -170,6 +171,7 @@ export function DayBody({ day, trip, live, editing }: { day: Day; trip: Trip; li
       </section>
 
       <DriveCard day={day} trip={trip} />
+      {live && <WhereAmI day={day} trip={trip} />}
 
       <section className={"stay stay-" + day.stay.status}>
         <div className="stay-top"><h2 className="k">今晚</h2><StayTag status={day.stay.status} /></div>
@@ -251,6 +253,46 @@ function DriveCard({ day, trip }: { day: Day; trip: Trip }) {
           里程按直线距离估算，实际以导航为准。
         </p>
       )}
+    </section>
+  );
+}
+
+/** 我现在在哪：只用这台手机的定位，不上传 */
+function WhereAmI({ day, trip }: { day: Day; trip: Trip }) {
+  const g = useGeo();
+  if (!trip.stops.length || g.status === "unsupported") return null;
+  if (g.status !== "on" || g.lat == null || g.lng == null) {
+    return (
+      <section className="block geo">
+        <h2 className="k">我在哪</h2>
+        <p className="muted small">打开后会显示你离下一站还有多远，并在路线图上标出你的位置。定位只留在这台手机上，不上传，也不会分享给别人。</p>
+        {g.status === "denied"
+          ? <p className="small note-open">定位权限被拒绝了。到手机「设置 → 隐私 → 定位服务」里给浏览器或这个 app 打开，再回来点一次。</p>
+          : null}
+        <div><button type="button" className="btn" onClick={startGeo} disabled={g.status === "asking"}>{g.status === "asking" ? "正在定位…" : "显示我的位置"}</button></div>
+      </section>
+    );
+  }
+  const me = { lat: g.lat, lng: g.lng };
+  const near = [...trip.stops].sort((a, b) => distMi(me, a) - distMi(me, b))[0];
+  const end = trip.stops.find(s => s.id === day.route?.[day.route.length - 1]);
+  const toEnd = end ? Math.round(distMi(me, end) * 1.15) : null;
+  const usable = trip.vehicle ? Math.round(trip.vehicle.rangeMi * 0.8) : 0;
+  const nd = distMi(me, near);
+  return (
+    <section className="block geo">
+      <h2 className="k">我在哪</h2>
+      <div className="geo-main">
+        <span className="geo-dot" aria-hidden="true" />
+        <b>{nd < 8 ? `在 ${near.name} 附近` : `离 ${near.name} 约 ${Math.round(nd)} mi`}</b>
+      </div>
+      {end && toEnd != null && (
+        <p className="geo-line">
+          到今天的终点 <b>{end.name}</b> 还有约 <span className="num">{toEnd}</span> mi
+          {trip.vehicle?.ev && <span className="muted">{toEnd > usable ? `，超过单次可用续航（${usable} mi），路上要充电` : `，在单次可用续航（${usable} mi）之内`}</span>}
+        </p>
+      )}
+      <p className="muted small">按直线距离估算。定位只在这台手机上使用{g.acc ? `，精度约 ${Math.round(g.acc)} 米` : ""}。<button type="button" className="linkish" onClick={stopGeo}>关闭定位</button></p>
     </section>
   );
 }

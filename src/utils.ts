@@ -176,3 +176,10 @@ export function fmtGap(min: number) {
   const h = Math.floor(min / 60), m = min % 60;
   return m ? `${h} 小时 ${m} 分后` : `${h} 小时后`;
 }
+
+/** 两点直线距离（英里） */
+export function distMi(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
+  const R = 3958.8, r = Math.PI / 180;
+  const h = Math.sin(((b.lat - a.lat) * r) / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(((b.lng - a.lng) * r) / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}

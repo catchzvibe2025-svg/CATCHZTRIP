@@ -11,12 +11,13 @@ interface Props {
   compact?: boolean;
   regions?: { id: string; name: string }[];
   onRegion?: (id: string) => void;
+  me?: { lat: number; lng: number } | null;
 }
 
 const W = 360;
 
 /** 按真实经纬度投影的路线图。不加载外部底图，只画经纬网、州界参考线、路线和站点。 */
-export function RouteMap({ stops, guides = [], members, region, selected, onSelect, compact, regions = [], onRegion }: Props) {
+export function RouteMap({ stops, guides = [], members, region, selected, onSelect, compact, regions = [], onRegion, me }: Props) {
   // 全程视图里，同一区域的站点合并成一个点，点开再看局部
   const shown = useMemo(() => {
     if (region !== "all") return stops.filter(s => s.region === region);
@@ -151,6 +152,16 @@ export function RouteMap({ stops, guides = [], members, region, selected, onSele
           </g>
         );
       })}
+      {me && (() => {
+        const x = px(me.lng), y = py(me.lat);
+        if (x < 4 || x > W - 4 || y < 4 || y > H - 4) return null;
+        return (
+          <g className="me">
+            <circle className="me-pulse" cx={x} cy={y} r="9" fill="#4da3ff" opacity=".3" />
+            <circle cx={x} cy={y} r="4.2" fill="#4da3ff" stroke="#fff" strokeWidth="1.6" />
+          </g>
+        );
+      })()}
       {labels.map(l => (
         <text key={l.id} x={l.tx} y={l.ty} textAnchor={l.a as "start"} className="stop-t">
           <tspan fontWeight="700">{l.name}</tspan>

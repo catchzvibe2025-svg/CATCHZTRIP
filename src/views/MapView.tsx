@@ -3,11 +3,13 @@ import { useStore } from "../store";
 import { RouteMap } from "../ui/RouteMap";
 import { SectionHead } from "../ui/bits";
 import { legMiles } from "../utils";
+import { useGeo } from "../ui/useGeo";
 
 export function MapView() {
   const { trip } = useStore();
   const [region, setRegion] = useState(trip.regions[0]?.id ?? "all");
   const [sel, setSel] = useState<string | null>(null);
+  const geo = useGeo();
   const list = region === "all" ? trip.stops : trip.stops.filter(s => s.region === region);
   const v = trip.vehicle;
   const usable = v ? Math.round(v.rangeMi * 0.8) : 0; // 按 80% 可用续航规划（高速、冬季、留余量）
@@ -25,8 +27,10 @@ export function MapView() {
       </SectionHead>
       <div className="card map-card">
         <RouteMap stops={trip.stops} guides={trip.guides} members={trip.members} region={region} selected={sel} onSelect={setSel}
+          me={geo.status === "on" && geo.lat != null && geo.lng != null ? { lat: geo.lat, lng: geo.lng } : null}
           regions={trip.regions} onRegion={r => { setRegion(r); setSel(null); }} />
         <div className="map-legend">
+          {geo.status === "on" && <span><i className="pip" style={{ background: "#4da3ff" }} />我（仅本机可见）</span>}
           {trip.members.map(m => {
             const s = trip.stops.find(s => s.mark === m.id);
             return s ? <span key={m.id}><i className="pip" style={{ background: `var(--${m.color})` }} />{m.short} · {s.name}</span> : null;
