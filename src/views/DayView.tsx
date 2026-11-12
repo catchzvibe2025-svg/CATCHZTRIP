@@ -55,6 +55,17 @@ export function DayView() {
   const go = (k: number) => { const t = trip.days[i + k]; if (t) dispatch({ type: "pickDay", date: t.date }); };
   const accent = sceneAccent(day.scene);
 
+  // 滚动时主画面慢半拍，带一点纵深
+  useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const el = document.querySelector<HTMLElement>(".hero-tall .scene");
+    if (!el) return;
+    let raf = 0;
+    const on = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { const y = Math.min(scrollY, 700); el.style.transform = `translateY(${y * 0.28}px) scale(${1 + y * 0.00025})`; }); };
+    addEventListener("scroll", on, { passive: true });
+    return () => { removeEventListener("scroll", on); cancelAnimationFrame(raf); el.style.transform = ""; };
+  }, [day.date]);
+
   useEffect(() => {
     document.querySelector(".strip .on")?.scrollIntoView({ inline: "center", block: "nearest" });
   }, [day.date]);

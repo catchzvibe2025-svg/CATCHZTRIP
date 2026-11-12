@@ -74,10 +74,8 @@ export function RouteMap({ stops, guides = [], members, region, selected, onSele
 
   const pick = (id: string) => (id.startsWith("region:") && onRegion ? onRegion(id.slice(7)) : onSelect?.(id));
   const pts = shown.map(s => ({ s, x: px(s.lng), y: py(s.lat) }));
-  const color = (s: Stop) => {
-    const m = members.find(m => m.id === s.mark);
-    return m ? `var(--${m.color})` : "var(--paper)";
-  };
+  const MARK: Record<string, string> = { c1: "#6bb6df", c2: "#ef8ca5", c3: "#e8b54a", c4: "#6fcf9c", c5: "#79cdc6" };
+  const color = (s: Stop) => MARK[members.find(m => m.id === s.mark)?.color ?? ""] ?? "#fff";
 
   // 标签避让：依次尝试右、左、上、下，选第一个不与已放标签和点重叠的位置
   const boxes: { x: number; y: number; w: number; h: number }[] = pts.map(p => ({ x: p.x - 7, y: p.y - 7, w: 14, h: 14 }));
@@ -102,31 +100,57 @@ export function RouteMap({ stops, guides = [], members, region, selected, onSele
     return { id: p.s.id, tx, ty: c.y + 10, a: c.a, name: p.s.name, label: p.s.label };
   });
 
+  // 平滑路线（Catmull-Rom 转贝塞尔）
+  const d = pts.map((p, i) => {
+    if (i === 0) return `M${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+    const p0 = pts[i - 2] ?? pts[i - 1], p1 = pts[i - 1], p3 = pts[i + 1] ?? p, t = 0.18;
+    return `C${(p1.x + (p.x - p0.x) * t).toFixed(1)},${(p1.y + (p.y - p0.y) * t).toFixed(1)} ${(p.x - (p3.x - p1.x) * t).toFixed(1)},${(p.y - (p3.y - p1.y) * t).toFixed(1)} ${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+  }).join(" ");
+  const uid = "rm" + region.replace(/\W/g, "") + (compact ? "c" : "");
+  const stars = useMemo(() => Array.from({ length: 46 }, (_, i) => {
+    const r = (n: number) => { const x = Math.sin((i + 1) * n) * 43758.5453; return x - Math.floor(x); };
+    return { x: r(12.9898) * W, y: r(78.233), o: 0.15 + r(39.425) * 0.5 };
+  }), []);
+
   return (
-    <svg className="routemap" viewBox={`0 0 ${W} ${H}`} role="img"
+    <svg className="routemap" viewBox={`0 0 ${W} ${H}`} role="img" key={region}
       aria-label={"路线：" + shown.map(s => s.name).join(" → ")}>
-      <rect x="0" y="0" width={W} height={H} fill="var(--map-bg)" />
-      <g stroke="var(--map-grid)" strokeWidth="1">{grid}</g>
+      <defs>
+        <linearGradient id={uid + "bg"} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#070a1c" /><stop offset="1" stopColor="#151a3a" />
+        </linearGradient>
+        <linearGradient id={uid + "rt"} gradientUnits="userSpaceOnUse" x1={pts[0].x} y1="0" x2={pts[pts.length - 1].x + 0.01} y2="0">
+          <stop offset="0" stopColor="#8ea2ff" /><stop offset=".55" stopColor="#ee5f86" /><stop offset="1" stopColor="#ffb36b" />
+        </linearGradient>
+        <filter id={uid + "gl"} x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="5" /></filter>
+      </defs>
+      <rect x="0" y="0" width={W} height={H} fill={`url(#${uid}bg)`} />
+      {stars.map((st, i) => <rect key={i} className="map-star" x={st.x} y={st.y * H} width="1" height="1" fill="#fff" opacity={st.o} style={{ animationDelay: `${(i % 7) * 0.6}s` }} />)}
+      <g stroke="#ffffff" strokeOpacity=".05" strokeWidth="1">{grid}</g>
       {region === "all" && guides.filter(g => g.lng > geo.lngMin && g.lng < geo.lngMax).map((g, gi) => (
         <g key={g.lng}>
-          <line x1={px(g.lng)} x2={px(g.lng)} y1={0} y2={H} stroke="var(--map-guide)" strokeWidth="1.2" strokeDasharray="4 4" />
+          <line x1={px(g.lng)} x2={px(g.lng)} y1={0} y2={H} stroke="#ffffff" strokeOpacity=".16" strokeWidth="1" strokeDasharray="2 5" />
           <text x={px(g.lng) + 4} y={H - 8 - (gi % 2) * 11} className="map-guide-t">{g.label}</text>
         </g>
       ))}
-      <polyline points={pts.map(p => `${p.x},${p.y}`).join(" ")} fill="none" stroke="var(--route)"
-        strokeWidth="2.4" strokeDasharray="6 5" strokeLinecap="round" strokeLinejoin="round" />
-      {pts.map((p, i) => (
-        <g key={p.s.id} className={"stop" + (selected === p.s.id ? " on" : "")}
-          onClick={onSelect ? () => pick(p.s.id) : undefined}
-          tabIndex={onSelect ? 0 : undefined}
-          onKeyDown={onSelect ? e => { if (e.key === "Enter") pick(p.s.id); } : undefined}>
-          {p.s.id.startsWith("region:")
-            ? <><circle cx={p.x} cy={p.y} r={11} fill="var(--paper)" stroke="var(--ink)" strokeWidth="2" strokeDasharray="3 2" />
-                <text x={p.x} y={p.y + 3.4} textAnchor="middle" className="stop-n">+</text></>
-            : <><circle cx={p.x} cy={p.y} r={selected === p.s.id ? 9 : 7} fill={color(p.s)} stroke="var(--route)" strokeWidth="2" />
-                <text x={p.x} y={p.y + 3.4} textAnchor="middle" className={"stop-n" + (p.s.mark ? " inv" : "")}>{stops.indexOf(p.s) + 1}</text></>}
-        </g>
-      ))}
+      <path d={d} fill="none" stroke={`url(#${uid}rt)`} strokeWidth="7" strokeLinecap="round" opacity=".55" filter={`url(#${uid}gl)`} />
+      <path className="route-line" d={d} pathLength={1} fill="none" stroke={`url(#${uid}rt)`} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      {pts.map(p => {
+        const on = selected === p.s.id, reg = p.s.id.startsWith("region:"), c = p.s.mark ? color(p.s) : "#fff";
+        return (
+          <g key={p.s.id} className={"stop" + (on ? " on" : "")}
+            onClick={onSelect ? () => pick(p.s.id) : undefined}
+            tabIndex={onSelect ? 0 : undefined}
+            onKeyDown={onSelect ? e => { if (e.key === "Enter") pick(p.s.id); } : undefined}>
+            <circle cx={p.x} cy={p.y} r="14" fill="transparent" />
+            {reg
+              ? <><circle className="stop-ring" cx={p.x} cy={p.y} r="10" fill="none" stroke="#ffb36b" strokeWidth="1.2" strokeDasharray="2 3" />
+                  <circle cx={p.x} cy={p.y} r="4" fill="#ffb36b" /></>
+              : <><circle cx={p.x} cy={p.y} r={on ? 11 : 7} fill={c} opacity=".22" />
+                  <circle cx={p.x} cy={p.y} r={on ? 4.5 : 3.2} fill={c} stroke="#070a1c" strokeWidth="1" /></>}
+          </g>
+        );
+      })}
       {labels.map(l => (
         <text key={l.id} x={l.tx} y={l.ty} textAnchor={l.a as "start"} className="stop-t">
           <tspan fontWeight="700">{l.name}</tspan>

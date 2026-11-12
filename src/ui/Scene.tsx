@@ -197,5 +197,16 @@ export function Scene({ spec, seed, className }: { spec: SceneSpec; seed: string
     const ro = new ResizeObserver(paint); ro.observe(c);
     return () => ro.disconnect();
   }, [spec.type, spec.tod, seed]);
-  return <canvas ref={ref} className={"scene " + (className ?? "")} aria-hidden="true" />;
+  const starry = spec.type !== "studio" && (spec.tod === "night" || spec.tod === "dusk");
+  const r = rng(seed + "tw");
+  return (
+    <>
+      <canvas ref={ref} className={"scene " + (className ?? "")} aria-hidden="true" />
+      {starry && (
+        <span className="twinkle" aria-hidden="true">
+          {Array.from({ length: 9 }, (_, i) => <i key={i} style={{ left: `${4 + r() * 92}%`, top: `${3 + r() * 38}%`, animationDelay: `${(r() * 3.6).toFixed(2)}s` }} />)}
+        </span>
+      )}
+    </>
+  );
 }
