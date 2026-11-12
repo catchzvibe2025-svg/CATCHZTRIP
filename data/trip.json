@@ -7,7 +7,7 @@
   "cover": "c1",
   "demo": true,
   "vehicle": { "name": "2022 Model Y 长续航", "rangeMi": 330, "ev": true },
-  "updated": "2026-11-12 07:00 CT",
+  "updated": "2026-11-12 07:05 CT",
   "members": [
     { "id": "tz", "short": "TZ", "name": "Haoyu", "color": "c1", "span": "全程" },
     { "id": "fri", "short": "FRI", "name": "Frida", "color": "c2", "span": "11/11–11/17，之后待定" },
@@ -356,7 +356,7 @@
       { "date": "2026-12-02", "title": "线上例会", "note": "TZ · 达拉斯时间 19:00–19:45 · 视频会", "kind": "work" },
       { "date": "2026-12-16", "title": "线上例会", "note": "TZ · 达拉斯时间 19:00–19:45 · 视频会", "kind": "work" },
       { "date": "2026-12-30", "title": "线上例会", "note": "TZ · 达拉斯时间 19:00–19:45 · 视频会", "kind": "work" },
-      { "date": "2027-01-06", "title": "CES · 拉斯维加斯", "note": "1/6–1/9 · 坐飞机去 · 三人都去 · 航班待定", "kind": "work" },
+      { "date": "2027-01-06", "title": "CES · 拉斯维加斯", "note": "1/6–1/9 · 坐飞机去 · 三人都去 · 酒店已订（两间）· 航班待定", "kind": "work" },
       { "date": "2027-01-13", "title": "线上例会", "note": "TZ · 达拉斯时间 19:00–19:45 · 视频会", "kind": "work" },
       { "date": "2027-01-14", "title": "仔仔在美行程到此", "kind": "end" }
     ],
