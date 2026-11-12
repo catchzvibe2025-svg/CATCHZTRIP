@@ -2,7 +2,7 @@
 
 多人同行的行程本，做成可以装到手机主屏幕的 PWA。示例数据是 Haoyu · Frida · Hank 2026–2027 在美两个月的行程。
 
-**在线地址**：https://catchzvibe2025-svg.github.io/catchztrip/
+**在线地址**：https://catchzvibe2025-svg.github.io/CATCHZTRIP/
 
 ## 装到手机上
 
