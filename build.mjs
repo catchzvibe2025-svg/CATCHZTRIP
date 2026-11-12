@@ -8,7 +8,7 @@ const mode = process.argv[2] || "pwa";
 const css = fs.readFileSync("src/styles.css", "utf8");
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;900&family=DM+Mono:wght@500&display=swap">`;
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700;900&family=DM+Mono:wght@500&display=swap">`;
 
 const shim = {
   name: "react-globals",
@@ -53,10 +53,10 @@ ${FONTS}
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CATCHZTRIP</title>
 <meta name="description" content="多人同行的行程本：每日日程、路线、住宿、工作日和待定事项。">
-<meta name="theme-color" content="#1f5f73">
+<meta name="theme-color" content="#0b0d12">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="CATCHZTRIP">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">

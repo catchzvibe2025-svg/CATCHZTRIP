@@ -2,11 +2,12 @@ import React, { createContext, useContext, useEffect, useReducer } from "react";
 import type { Item, StayStatus, Trip } from "./types";
 import { demoTrip } from "./demoTrip";
 
-interface State { trips: Trip[]; activeId: string; editing: boolean }
+interface State { trips: Trip[]; activeId: string; editing: boolean; day: string | null }
 
 type Action =
   | { type: "select"; id: string }
   | { type: "toggleEdit" }
+  | { type: "pickDay"; date: string | null }
   | { type: "create"; trip: Trip }
   | { type: "delete"; id: string }
   | { type: "resetDemo" }
@@ -19,13 +20,14 @@ const clone = <T,>(x: T): T => JSON.parse(JSON.stringify(x));
 const stamp = () => new Date().toLocaleString("zh-CN", { hour12: false }).slice(0, 16) + " · 本机修改";
 
 function load(): State {
-  const base: State = { trips: [clone(demoTrip)], activeId: demoTrip.id, editing: false };
+  const base: State = { trips: [clone(demoTrip)], activeId: demoTrip.id, editing: false, day: null };
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return base;
     const s = JSON.parse(raw) as State;
     if (!Array.isArray(s.trips) || !s.trips.length) return base;
-    return { ...s, editing: false };
+    if (!s.trips.every(t => t.days.every(d => d.scene))) return base;
+    return { ...s, editing: false, day: null };
   } catch { return base; }
 }
 
@@ -35,9 +37,10 @@ function patchTrip(s: State, fn: (t: Trip) => Trip): State {
 
 function reducer(s: State, a: Action): State {
   switch (a.type) {
-    case "select": return { ...s, activeId: a.id };
+    case "select": return { ...s, activeId: a.id, day: null };
+    case "pickDay": return { ...s, day: a.date };
     case "toggleEdit": return { ...s, editing: !s.editing };
-    case "create": return { ...s, trips: [...s.trips, a.trip], activeId: a.trip.id, editing: true };
+    case "create": return { ...s, trips: [...s.trips, a.trip], activeId: a.trip.id, editing: true, day: null };
     case "delete": {
       const trips = s.trips.filter(t => t.id !== a.id);
       if (!trips.length) trips.push(clone(demoTrip));
@@ -62,7 +65,7 @@ const Ctx = createContext<{ state: State; dispatch: React.Dispatch<Action>; trip
 export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, undefined, load);
   useEffect(() => {
-    try { localStorage.setItem(KEY, JSON.stringify({ ...state, editing: false })); } catch { /* 本机存储不可用时照常运行 */ }
+    try { localStorage.setItem(KEY, JSON.stringify({ ...state, editing: false, day: null })); } catch { /* 本机存储不可用时照常运行 */ }
   }, [state]);
   const trip = state.trips.find(t => t.id === state.activeId) ?? state.trips[0];
   return <Ctx.Provider value={{ state, dispatch, trip }}>{children}</Ctx.Provider>;

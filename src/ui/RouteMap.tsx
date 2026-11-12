@@ -121,7 +121,7 @@ export function RouteMap({ stops, guides = [], members, region, selected, onSele
           tabIndex={onSelect ? 0 : undefined}
           onKeyDown={onSelect ? e => { if (e.key === "Enter") pick(p.s.id); } : undefined}>
           {p.s.id.startsWith("region:")
-            ? <><circle cx={p.x} cy={p.y} r={11} fill="var(--brand-bg)" stroke="var(--brand)" strokeWidth="2" strokeDasharray="3 2" />
+            ? <><circle cx={p.x} cy={p.y} r={11} fill="var(--paper)" stroke="var(--ink)" strokeWidth="2" strokeDasharray="3 2" />
                 <text x={p.x} y={p.y + 3.4} textAnchor="middle" className="stop-n">+</text></>
             : <><circle cx={p.x} cy={p.y} r={selected === p.s.id ? 9 : 7} fill={color(p.s)} stroke="var(--route)" strokeWidth="2" />
                 <text x={p.x} y={p.y + 3.4} textAnchor="middle" className={"stop-n" + (p.s.mark ? " inv" : "")}>{stops.indexOf(p.s) + 1}</text></>}

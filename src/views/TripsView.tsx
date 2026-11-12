@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useStore } from "../store";
 import { md, newTrip, stats, addDays } from "../utils";
-import { RouteMap } from "../ui/RouteMap";
+import { Scene } from "../ui/Scene";
 import { Avatar, Icon, SectionHead } from "../ui/bits";
 
 export function TripsView({ go }: { go: (r: string) => void }) {
@@ -9,7 +9,7 @@ export function TripsView({ go }: { go: (r: string) => void }) {
   const [creating, setCreating] = useState(false);
   const [confirmDel, setConfirmDel] = useState<string | null>(null);
   return (
-    <div className="stack">
+    <div className="page">
       <SectionHead title="全部行程" aside={`${state.trips.length} 个`}>
         <button type="button" className="btn btn-primary" onClick={() => setCreating(c => !c)}><Icon name="plus" />新建行程</button>
       </SectionHead>
@@ -21,14 +21,14 @@ export function TripsView({ go }: { go: (r: string) => void }) {
             <article key={t.id} className={"card trip" + (t.id === state.activeId ? " current" : "")}>
               <button type="button" className="trip-open" onClick={() => { dispatch({ type: "select", id: t.id }); go("plan"); }}>
                 <div className="trip-map">
-                  <RouteMap stops={t.stops} members={t.members} region="all" compact regions={t.regions} />
+                  <Scene spec={t.days[Math.min(1, t.days.length - 1)].scene} seed={t.id + "cover"} />
                 </div>
                 <div className="trip-body">
                   <div className="trip-top">
                     {t.demo && <span className="tag tag-demo">示例</span>}
                     <span className="mono muted">{md(t.start)} – {md(t.end)} · {s.days} 天</span>
                   </div>
-                  <h3>{t.name}</h3>
+                  <h3 className="display">{t.name}</h3>
                   <div className="avatars">{t.members.map(m => <Avatar key={m.id} m={m} />)}</div>
                   <dl className="kv">
                     <div><dt>已排</dt><dd className="mono">{s.planned} 天</dd></div>

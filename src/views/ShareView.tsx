@@ -8,7 +8,7 @@ export function ShareView() {
   const { checked, hits } = privacyScan(trip);
   const ok = hits.length === 0;
   return (
-    <div className="stack">
+    <div className="page">
       <SectionHead title="分享给同行的人" aside="只读页面 · 不需要登录" />
       <div className={"card scan " + (ok ? "scan-ok" : "scan-bad")}>
         <div className="scan-top">

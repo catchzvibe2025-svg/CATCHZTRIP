@@ -12,7 +12,7 @@ export function MapView() {
   const v = trip.vehicle;
   const usable = v ? Math.round(v.rangeMi * 0.8) : 0; // 按 80% 可用续航规划（高速、冬季、留余量）
   return (
-    <div className="stack">
+    <div className="page">
       <SectionHead title="路线" aside="按真实经纬度绘制 · 点站点看详情">
         {trip.regions.length > 1 && (
           <div className="seg" role="tablist" aria-label="地图范围">

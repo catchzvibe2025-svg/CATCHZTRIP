@@ -1,6 +1,8 @@
 export type ItemKind = "normal" | "work" | "fly" | "meet" | "charge";
 export type StayStatus = "booked" | "tbd" | "road";
 
+export interface SceneSpec { type: "hills" | "dunes" | "saguaro" | "city" | "coast" | "camp" | "road" | "studio"; tod: "night" | "dawn" | "day" | "golden" | "dusk" }
+
 export interface Place { q: string; dir?: boolean }
 
 export interface Member {
@@ -21,6 +23,8 @@ export interface Day {
   items: Item[];
   tip?: string;
   stay: Stay;
+  scene: SceneSpec;
+  place: string;       // 当天所在地，画面上的大字
 }
 
 export interface Stop { id: string; name: string; label: string; lat: number; lng: number; region?: string; mark?: string }

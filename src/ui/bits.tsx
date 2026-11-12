@@ -35,6 +35,7 @@ export function SectionHead({ title, aside, children }: { title: string; aside?:
 export function Icon({ name }: { name: string }) {
   const p: Record<string, string> = {
     plan: "M4 5h16M4 12h16M4 19h10",
+    sun: "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19",
     map: "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Zm0 0v14m6-12v14",
     stays: "M3 20V9l9-5 9 5v11M9 20v-6h6v6",
     work: "M4 8h16v11H4zM9 8V5h6v3",

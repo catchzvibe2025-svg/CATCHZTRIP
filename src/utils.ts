@@ -119,7 +119,8 @@ export function newTrip(name: string, start: string, end: string, people: string
   for (let i = 0; i <= len; i++) {
     const date = addDays(start, i);
     days.push({
-      date, title: "", tz: "当地时间",
+      date, title: "", tz: "当地时间", place: "",
+      scene: { type: (["hills", "coast", "city", "dunes"] as const)[i % 4], tod: (["dawn", "day", "golden", "dusk", "night"] as const)[i % 5] },
       where: Object.fromEntries(members.map(m => [m.id, "待定"])),
       items: [], stay: { name: "住处待定", sub: "", status: "tbd" },
     });
@@ -157,4 +158,21 @@ export function legMiles(a: { lat: number; lng: number }, b: { lat: number; lng:
   const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLng / 2) ** 2;
   const d = 2 * R * Math.asin(Math.sqrt(h)) * 1.15;
   return Math.max(10, Math.round(d / 10) * 10);
+}
+
+/** 把 "14:30–17:30" / "18:15 出发" 这类时间解析成当天的分钟数；解析不了返回 null */
+export function startMin(t: string): number | null {
+  if (/次日/.test(t)) return null;
+  const m = t.match(/(\d{1,2}):(\d{2})/);
+  return m ? Number(m[1]) * 60 + Number(m[2]) : null;
+}
+export function todayISO() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+export function nowMin() { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+export function fmtGap(min: number) {
+  if (min < 60) return `${min} 分钟后`;
+  const h = Math.floor(min / 60), m = min % 60;
+  return m ? `${h} 小时 ${m} 分后` : `${h} 小时后`;
 }

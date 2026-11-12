@@ -44,14 +44,14 @@ export const demoTrip: Trip = {
     { id: "wla", name: "西 LA", label: "11/18 起", lat: 34.02, lng: -118.4, region: "socal", mark: "tz" },
   ],
   days: [
-    { date: "2026-11-11", title: "达拉斯出发，连夜向西", tz: "达拉斯时间 CT",
+    { date: "2026-11-11", scene: { type: "road", tod: "night" }, place: "Texas → New Mexico", title: "达拉斯出发，连夜向西", tz: "达拉斯时间 CT",
       where: { tz: "达拉斯出发，夜里在路上", fri: "同 TZ", hank: null },
       items: [
         { id: id(), t: "18:30", title: "达拉斯满电出发", note: "全程约 14 小时，含约 3 小时充电" },
         { id: id(), t: "夜间", title: "一路开往新墨西哥 Alamogordo" },
       ],
       stay: { name: "通宵自驾，不住店", sub: "次日早上到 Alamogordo", status: "road" } },
-    { date: "2026-11-12", title: "白沙 Alamogordo → Lordsburg", tz: "新墨西哥当地时间",
+    { date: "2026-11-12", scene: { type: "dunes", tod: "dusk" }, place: "White Sands", title: "白沙 Alamogordo → Lordsburg", tz: "新墨西哥当地时间",
       where: { tz: "Alamogordo · 白沙 → Lordsburg", fri: "同 TZ", hank: null },
       items: [
         { id: id(), t: "07:30", title: "到 Alamogordo" },
@@ -61,7 +61,7 @@ export const demoTrip: Trip = {
         { id: id(), t: "17:30–21:30", title: "开往 Lordsburg" },
       ],
       stay: { name: "Comfort Inn & Suites Lordsburg I-10", sub: "Lordsburg, NM", status: "booked", place: S("Comfort Inn & Suites Lordsburg I-10") } },
-    { date: "2026-11-13", title: "仙人掌公园 Saguaro → San Bernardino", tz: "当地时间 · 入夜进加州（太平洋时间）",
+    { date: "2026-11-13", scene: { type: "saguaro", tod: "golden" }, place: "Saguaro", title: "仙人掌公园 Saguaro → San Bernardino", tz: "当地时间 · 入夜进加州（太平洋时间）",
       where: { tz: "Lordsburg → Saguaro → 凤凰城 → San Bernardino", fri: "同 TZ", hank: null },
       items: [
         { id: id(), t: "早上", title: "Lordsburg 麦当劳早餐" },
@@ -71,7 +71,7 @@ export const demoTrip: Trip = {
         { id: id(), t: "次日 01:30–02:30", title: "到 San Bernardino" },
       ],
       stay: { name: "DoubleTree by Hilton San Bernardino", sub: "San Bernardino, CA", status: "booked", place: S("DoubleTree by Hilton San Bernardino") } },
-    { date: "2026-11-14", title: "LAX 接仔仔，三人会合", tz: "太平洋时间 PT",
+    { date: "2026-11-14", scene: { type: "city", tod: "dusk" }, place: "Los Angeles", title: "LAX 接仔仔，三人会合", tz: "太平洋时间 PT",
       where: { tz: "San Bernardino → LA → Irvine", fri: "同 TZ", hank: "下午在 LAX 会合，之后三人同行" },
       items: [
         { id: id(), t: "11:15", title: "第一家麦当劳原址博物馆", place: S("First McDonald's Museum San Bernardino") },
@@ -82,7 +82,7 @@ export const demoTrip: Trip = {
         { id: id(), t: "饭后", title: "开往尔湾 Irvine" },
       ],
       stay: { name: "Hilton Garden Inn Irvine/Orange County Airport", sub: "Irvine · 15:00 起可入住", status: "booked", place: D("2381 Morse Ave, Irvine, CA 92614") } },
-    { date: "2026-11-15", title: "去圣地亚哥：La Jolla 与 Sunset Cliffs", tz: "太平洋时间 PT",
+    { date: "2026-11-15", scene: { type: "coast", tod: "golden" }, place: "San Diego", title: "去圣地亚哥：La Jolla 与 Sunset Cliffs", tz: "太平洋时间 PT",
       where: { tz: "Irvine → 圣地亚哥", fri: "同行", hank: "同行" },
       items: [
         { id: id(), t: "10:00–12:00", title: "开往圣地亚哥" },
@@ -91,7 +91,7 @@ export const demoTrip: Trip = {
         { id: id(), t: "18:00–20:30", title: "Little Italy + 海湾夜游", place: S("Little Italy San Diego") },
       ],
       stay: { name: "Crowne Plaza San Diego - Mission Valley", sub: "圣地亚哥 · 连住两晚（第 1 晚）· 16:00 后入住", status: "booked", place: D("2270 Hotel Cir N, San Diego, CA 92108") } },
-    { date: "2026-11-16", title: "圣地亚哥：Balboa Park 与 Midway", tz: "太平洋时间 PT",
+    { date: "2026-11-16", scene: { type: "coast", tod: "day" }, place: "San Diego", title: "圣地亚哥：Balboa Park 与 Midway", tz: "太平洋时间 PT",
       where: { tz: "圣地亚哥", fri: "同行", hank: "同行" },
       items: [
         { id: id(), t: "上午", title: "Balboa Park", place: S("Balboa Park San Diego") },
@@ -101,7 +101,7 @@ export const demoTrip: Trip = {
         { id: id(), t: "晚上", title: "Old Town 晚饭", place: S("Old Town San Diego") },
       ],
       stay: { name: "Crowne Plaza San Diego - Mission Valley", sub: "圣地亚哥 · 连住两晚（第 2 晚）", status: "booked", place: D("2270 Hotel Cir N, San Diego, CA 92108") } },
-    { date: "2026-11-17", title: "La Jolla、UCSD，送 FRI 去机场", tz: "太平洋时间 PT",
+    { date: "2026-11-17", scene: { type: "camp", tod: "night" }, place: "San Clemente", title: "La Jolla、UCSD，送 FRI 去机场", tz: "太平洋时间 PT",
       where: { tz: "圣地亚哥 → San Clemente", fri: "18:00 从 SAN 飞回达拉斯", hank: "与 TZ 同行" },
       items: [
         { id: id(), t: "11:00 前", title: "退房" },
@@ -117,7 +117,7 @@ export const demoTrip: Trip = {
       ],
       tip: "上午比较紧：La Jolla Cove 到 UCSD 两段车程合计约半小时，还没算停车。可以早点离店，海狮短看一会儿。",
       stay: { name: "San Clemente State Beach 车宿露营", sub: "备选：Crystal Cove 州立公园 Moro 营地", status: "tbd", place: D("225 Avenida Calafia, San Clemente, CA 92672") } },
-    { date: "2026-11-18", title: "回西 LA，下午开会", tz: "太平洋时间 PT", work: "14:00 开会",
+    { date: "2026-11-18", scene: { type: "city", tod: "golden" }, place: "Culver City", title: "回西 LA，下午开会", tz: "太平洋时间 PT", work: "14:00 开会",
       where: { tz: "San Clemente → 西 LA", fri: "@在达拉斯", hank: "与 TZ 同行" },
       items: [
         { id: id(), t: "早晨", title: "营地起床、收拾", note: "没洗漱的话可去 Planet Fitness（5:00 开门）" },
@@ -129,7 +129,7 @@ export const demoTrip: Trip = {
         { id: id(), t: "会后", title: "安顿，准备次日 Viola" },
       ],
       stay: { name: "西 LA / Culver City / Palms", sub: "区域已定，具体住处待定", status: "tbd" } },
-    { date: "2026-11-19", title: "Viola 拍摄全天", tz: "太平洋时间 PT", work: "全天拍摄",
+    { date: "2026-11-19", scene: { type: "studio", tod: "night" }, place: "On Set · LA", title: "Viola 拍摄全天", tz: "太平洋时间 PT", work: "全天拍摄",
       where: { tz: "洛杉矶片场", fri: "@在达拉斯", hank: "与 TZ 同行，到场" },
       items: [
         { id: id(), t: "全天", title: "Viola 拍摄，整日现场", note: "片场地址、开收工时间待定", kind: "work" },
@@ -137,7 +137,7 @@ export const demoTrip: Trip = {
         { id: id(), t: "收工后", title: "回住处休息" },
       ],
       stay: { name: "西 LA / Culver City / Palms", sub: "同 11/18，具体住处待定", status: "tbd" } },
-    { date: "2026-11-20", title: "缓冲日：远程工作，可选 Getty", tz: "太平洋时间 PT",
+    { date: "2026-11-20", scene: { type: "hills", tod: "day" }, place: "West LA", title: "缓冲日：远程工作，可选 Getty", tz: "太平洋时间 PT",
       where: { tz: "西 LA", fri: "@在达拉斯", hank: "与 TZ 同行" },
       items: [
         { id: id(), t: "上午", title: "停驻远程工作，目标 3–4 小时" },

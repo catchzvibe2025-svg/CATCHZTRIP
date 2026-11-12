@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "../store";
-import { md, stayRuns, addDays, wd } from "../utils";
+import { md, stayRuns, wd } from "../utils";
 import type { StayStatus } from "../types";
 import { NavLink, SectionHead, StayTag } from "../ui/bits";
 
@@ -26,9 +26,9 @@ export function StaysView() {
           const d = r.days[0];
           return (
             <li key={r.from} className={"card run run-" + d.stay.status}>
-              <div className="run-date mono">
-                <span>{md(r.from)} {wd(r.from)}</span>
-                <span className="muted">{r.nights > 1 ? `→ ${md(addDays(r.from, r.nights))} · ${r.nights} 晚` : d.stay.status === "road" ? "夜间" : "1 晚"}</span>
+              <div className="run-date">
+                <span>{md(r.from).replace("/", ".")}</span>
+                <span className="muted">{wd(r.from)} · {r.nights > 1 ? `${r.nights} 晚` : d.stay.status === "road" ? "夜间" : "1 晚"}</span>
               </div>
               <div className="run-main">
                 <b>{d.stay.name}</b>
