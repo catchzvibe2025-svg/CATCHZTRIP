@@ -1,0 +1,22 @@
+{
+  "name": "catchztrip",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CATCHZTRIP：多人同行的行程本（React PWA）",
+  "scripts": {
+    "build": "node build.mjs pwa",
+    "build:artifact": "node build.mjs artifact",
+    "typecheck": "tsc -p .",
+    "dev": "node build.mjs pwa && npx --yes serve dist"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "esbuild": "0.24.2",
+    "typescript": "5.6.3"
+  }
+}
