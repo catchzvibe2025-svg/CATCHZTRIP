@@ -7,7 +7,7 @@
   "cover": "c1",
   "demo": true,
   "vehicle": { "name": "2022 Model Y 长续航", "rangeMi": 330, "ev": true },
-  "updated": "2026-11-13 14:10 MT",
+  "updated": "2026-11-13 14:20 MT",
   "members": [
     { "id": "tz", "short": "TZ", "name": "Haoyu", "color": "c1", "span": "全程" },
     { "id": "fri", "short": "FRI", "name": "Frida", "color": "c2", "span": "11/11–11/17，之后待定" },
@@ -239,7 +239,7 @@
         { "id": "i58", "t": "17:00–17:45", "title": "线上例会（每两周一次）", "note": "视频会，TZ 参加。达拉斯时间 19:00。须在住处或停好车再开", "kind": "work" },
         { "id": "i44", "t": "会后", "title": "安顿，准备次日 Viola" }
       ],
-      "stay": { "name": "西 LA / Culver City / Palms", "sub": "区域已定，连住到 11/24（11/25 退房），具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "连住 7 晚到 11/24，11/25 退房", "status": "booked" }
     },
     {
       "date": "2026-11-19",
@@ -258,7 +258,7 @@
         { "id": "i46", "t": "通勤", "title": "预留 60–180 分钟", "note": "占位，片场定了再算" },
         { "id": "i47", "t": "收工后", "title": "回住处休息" }
       ],
-      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24", "status": "booked" }
     },
     {
       "date": "2026-11-20",
@@ -276,7 +276,7 @@
         { "id": "i49", "t": "下午", "title": "Getty Center", "note": "入场时段未预约，计划 15:00 左右入场，待到日落后（日落约 16:45）", "place": { "q": "1200 Getty Center Dr, Los Angeles, CA 90049", "dir": true } },
         { "id": "i50", "t": "晚上", "title": "回住处，次日 LA 街访" }
       ],
-      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24", "status": "booked" }
     },
     {
       "date": "2026-11-21",
@@ -295,7 +295,7 @@
         { "id": "i52", "t": "收工后", "title": "回住处休息" }
       ],
       "tip": "连住同一处，今天早上不用搬家。",
-      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24，具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24", "status": "booked" }
     },
     {
       "date": "2026-11-22",
@@ -313,7 +313,7 @@
         { "id": "i62", "t": "中午", "title": "Grand Central Market 午饭", "place": { "q": "Grand Central Market, Los Angeles, CA" } },
         { "id": "i63", "t": "下午", "title": "Arts District 街拍", "note": "傍晚前回住处，不出城过夜", "place": { "q": "Arts District, Los Angeles, CA" } }
       ],
-      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24，具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24", "status": "booked" }
     },
     {
       "date": "2026-11-23",
@@ -330,7 +330,7 @@
         { "id": "i54", "t": "白天", "title": "自由活动", "note": "不出城过夜，次日 LA TVC" },
         { "id": "i57", "t": "傍晚", "title": "Griffith 天文台外看日落", "note": "日落约 16:45。周一馆内不开，只在外面看，不用订票", "place": { "q": "Griffith Observatory, Los Angeles, CA", "dir": true } }
       ],
-      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24，具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24", "status": "booked" }
     },
     {
       "date": "2026-11-24",
@@ -349,7 +349,7 @@
         { "id": "i56", "t": "收工后", "title": "留在洛杉矶休息，睡足 8 小时", "note": "不连夜赶路" }
       ],
       "tip": "加州的现场工作到今天结束。",
-      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24，具体住处待定", "status": "tbd" }
+      "stay": { "name": "西 LA / Culver City / Palms", "sub": "同 11/18，连住到 11/24", "status": "booked" }
     }
   ],
   "later": {
