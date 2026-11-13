@@ -7,7 +7,7 @@
   "cover": "c1",
   "demo": true,
   "vehicle": { "name": "2022 Model Y 长续航", "rangeMi": 330, "ev": true },
-  "updated": "2026-11-13 12:30 MT",
+  "updated": "2026-11-13 13:05 MT",
   "members": [
     { "id": "tz", "short": "TZ", "name": "Haoyu", "color": "c1", "span": "全程" },
     { "id": "fri", "short": "FRI", "name": "Frida", "color": "c2", "span": "11/11–11/17，之后待定" },
@@ -211,8 +211,8 @@
       "tip": "上午比较紧：La Jolla Cove 到 UCSD 两段车程合计约半小时，还没算停车。可以早点离店，海狮短看一会儿。",
       "stay": {
         "name": "San Clemente State Beach 车宿露营",
-        "sub": "订普通营位，待订 · 备选：Crystal Cove 州立公园 Moro 营地",
-        "status": "tbd",
+        "sub": "普通营位 · 须 22:00 前进园",
+        "status": "booked",
         "place": { "q": "225 Avenida Calafia, San Clemente, CA 92672", "dir": true }
       }
     },
